@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FieldTech</string>
+
+    <!-- Navegación -->
+    <string name="nav_home">Inicio</string>
+    <string name="nav_history">Historial</string>
+    <string name="nav_irrigation">Riego</string>
+    <string name="nav_crops">Cultivos</string>
+    <string name="nav_alerts">Alertas</string>
+    <string name="nav_settings">Ajustes</string>
+    <string name="nav_huertos">Mis huertos</string>
+    <string name="action_switch_huerto">Cambiar huerto</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="action_toggle_theme">Alternar Tema</string>
+
+    <!-- Comunes -->
+    <string name="ok">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="save">Guardar</string>
+    <string name="delete">Eliminar</string>
+    <string name="edit">Editar</string>
+    <string name="dash">--</string>
+    <string name="unit_percent">%</string>
+    <string name="no_huerto">Sin huerto seleccionado</string>
+    <string name="no_data">Sin datos</string>
+    <string name="unit_celsius">°C</string>
+    <string name="unit_kpa">kPa</string>
+    <string name="level_low">Bajo</string>
+    <string name="level_optimal">Óptimo</string>
+    <string name="level_high">Alto</string>
+
+    <!-- Notificaciones -->
+    <string name="channel_alerts">Alertas del huerto</string>
+    <string name="channel_alerts_desc">Avisos de riego, temperatura y estado del dispositivo</string>
+
+    <!-- Inicio -->
+    <string name="home_updated">Actualizado %1$s</string>
+    <string name="home_waiting">Esperando datos del dispositivo…</string>
+    <string name="conn_online">En línea</string>
+    <string name="conn_offline">Sin conexión</string>
+    <string name="conn_loading">Conectando…</string>
+    <string name="conn_demo">Modo demostración</string>
+    <string name="soil_moisture">Humedad del suelo</string>
+    <string name="soil_temp">Temp. del suelo</string>
+    <string name="air_temp">Temp. ambiente</string>
+    <string name="air_humidity">Humedad del aire</string>
+    <string name="vpd">Estrés hídrico (VPD)</string>
+    <string name="vpd_low">Aire muy húmedo</string>
+    <string name="vpd_normal">Normal</string>
+    <string name="vpd_high">Aire muy seco</string>
+    <string name="ideal_range">Rango ideal: %1$.0f – %2$.0f %3$s</string>
+    <string name="device_title">Dispositivo ESP32</string>
+    <string name="battery">Batería</string>
+    <string name="signal">Señal WiFi</string>
+    <string name="last_reading">Última lectura</string>
+    <string name="signal_excellent">Excelente</string>
+    <string name="signal_good">Buena</string>
+    <string name="signal_weak">Débil</string>
+    <string name="signal_value">%1$s (%2$d dBm)</string>
+    <string name="chart_soil_24h">Humedad del suelo · últimas 24 h</string>
+    <string name="see_history">Ver historial</string>
+    <string name="tap_for_advice">Toca para ver la recomendación de riego</string>
+
+    <!-- Recomendaciones de riego -->
+    <string name="advice_now_title">Riega ahora</string>
+    <string name="advice_now_detail">La humedad del suelo está en %1$.0f%%, por debajo del rango ideal para %2$s (%3$.0f–%4$.0f%%).</string>
+    <string name="advice_soon_title">Prepara el riego pronto</string>
+    <string name="advice_soon_detail">La humedad (%1$.0f%%) se acerca al límite inferior para %2$s (%3$.0f%%). Conviene regar en las próximas horas.</string>
+    <string name="advice_none_title">No necesitas regar</string>
+    <string name="advice_none_detail">La humedad del suelo (%1$.0f%%) está dentro del rango ideal para %2$s.</string>
+    <string name="advice_excess_title">Exceso de humedad</string>
+    <string name="advice_excess_detail">La humedad (%1$.0f%%) supera el máximo recomendado para %2$s (%3$.0f%%). Suspende el riego y revisa el drenaje.</string>
+    <string name="advice_nodata_title">Sin datos todavía</string>
+    <string name="advice_nodata_detail">Conecta tu dispositivo o activa el modo demostración en Ajustes.</string>
+    <string name="intensity_light">Riego ligero</string>
+    <string name="intensity_moderate">Riego moderado</string>
+    <string name="intensity_deep">Riego profundo</string>
+    <string name="tip_hot">Hace calor (%1$.0f °C): riega temprano en la mañana o al atardecer para reducir la evaporación.</string>
+    <string name="tip_normal">Buen momento: riega en la mañana para que el suelo aproveche el agua durante el día.</string>
+    <string name="tip_cold">Hace frío (%1$.0f °C): evita regar de noche para no enfriar el suelo ni favorecer hongos.</string>
+    <string name="tip_excess">Con el suelo saturado el riego no aporta: espera a que baje la humedad.</string>
+    <string name="tip_none">Vuelve a revisar más tarde; la app te avisará cuando haga falta.</string>
+
+    <!-- Pantalla de riego -->
+    <string name="irrigation_conditions">Condiciones actuales</string>
+    <string name="irrigation_current">Humedad actual: %1$.0f%%</string>
+    <string name="irrigation_crop">Cultivo: %1$s</string>
+    <string name="irrigation_last">Último riego registrado: %1$s</string>
+    <string name="irrigation_none_logged">Aún no has registrado riegos</string>
+    <string name="irrigation_log_button">Registrar riego</string>
+    <string name="irrigation_history">Registro de riegos</string>
+    <string name="irrigation_dialog_title">Registrar riego</string>
+    <string name="irrigation_minutes">Duración (minutos)</string>
+    <string name="irrigation_note">Nota (opcional)</string>
+    <string name="irrigation_minutes_fmt">%1$d min</string>
+    <string name="irrigation_saved">Riego registrado</string>
+    <string name="irrigation_minutes_required">Ingresa los minutos</string>
+
+    <!-- Historial -->
+    <string name="history_metric">Variable</string>
+    <string name="history_period">Periodo</string>
+    <string name="range_6h">6 h</string>
+    <string name="range_24h">24 h</string>
+    <string name="range_7d">7 días</string>
+    <string name="stat_min">Mínimo</string>
+    <string name="stat_avg">Promedio</string>
+    <string name="stat_max">Máximo</string>
+    <string name="history_empty">Aún no hay datos para este periodo</string>
+    <string name="history_hint">Toca y arrastra sobre el gráfico para ver cada lectura.</string>
+
+    <!-- Cultivos -->
+    <string name="crops_intro">Compatibilidad calculada con las condiciones de «%1$s» durante los últimos 7 días.</string>
+    <string name="crops_in_use">En uso</string>
+    <string name="compat_very">Muy adecuado</string>
+    <string name="compat_good">Adecuado</string>
+    <string name="compat_fair">Regular</string>
+    <string name="compat_poor">Poco adecuado</string>
+    <string name="compat_score">Compatibilidad: %1$d%%</string>
+    <string name="crop_use_button">Usar en mi huerto</string>
+    <string name="crop_ideal_soil">Humedad del suelo ideal</string>
+    <string name="crop_ideal_air">Temperatura ambiente ideal</string>
+    <string name="crop_ideal_hum">Humedad del aire ideal</string>
+    <string name="crop_tip_title">Consejo de manejo</string>
+    <string name="crop_disclaimer">Valores referenciales. Valídalos con un ingeniero agrónomo de tu zona.</string>
+    <string name="crop_set_done">Cultivo actualizado: %1$s</string>
+    <string name="crop_none">Sin cultivo definido</string>
+    <string name="range_fmt">%1$.0f – %2$.0f %3$s</string>
+
+    <string name="crop_generic">Cultivo general</string>
+    <string name="crop_generic_desc">Rangos amplios para cuando aún no defines un cultivo.</string>
+    <string name="crop_generic_tip">Elige tu cultivo para recibir recomendaciones más precisas.</string>
+    <string name="crop_asparagus">Espárrago</string>
+    <string name="crop_asparagus_desc">Cultivo emblemático de la costa norte. Prefiere suelos arenosos bien drenados y temperaturas frescas.</string>
+    <string name="crop_asparagus_tip">Evita encharcamientos: la corona es sensible a la pudrición. Riega ligero y frecuente durante la brotación.</string>
+    <string name="crop_blueberry">Arándano</string>
+    <string name="crop_blueberry_desc">Exige humedad constante y suelo ácido con buen drenaje. Sensible al calor excesivo.</string>
+    <string name="crop_blueberry_tip">Mantén el suelo húmedo sin saturarlo; las raíces son superficiales y se secan rápido.</string>
+    <string name="crop_avocado">Palta</string>
+    <string name="crop_avocado_desc">Árbol perenne sensible al exceso de agua y a las heladas. Requiere buen drenaje.</string>
+    <string name="crop_avocado_tip">Riega profundo y espaciado; el exceso de humedad favorece hongos en la raíz.</string>
+    <string name="crop_grape">Uva de mesa</string>
+    <string name="crop_grape_desc">Se adapta bien al clima cálido y seco de la costa. Necesita estrés hídrico controlado en maduración.</string>
+    <string name="crop_grape_tip">Reduce el riego cerca de la cosecha para mejorar el azúcar y la calidad del fruto.</string>
+    <string name="crop_artichoke">Alcachofa</string>
+    <string name="crop_artichoke_desc">Prefiere climas frescos y suelos con buena humedad, sin encharcamientos.</string>
+    <string name="crop_artichoke_tip">Evita periodos largos de sequía en la formación de capítulos.</string>
+    <string name="crop_pepper">Pimiento piquillo</string>
+    <string name="crop_pepper_desc">Cultivo de clima cálido con riegos frecuentes y uniformes.</string>
+    <string name="crop_pepper_tip">Riega de forma regular; los cambios bruscos de humedad causan caída de flores y frutos.</string>
+    <string name="crop_corn">Maíz amarillo duro</string>
+    <string name="crop_corn_desc">Cultivo de alta demanda de agua, sobre todo en floración y llenado de grano.</string>
+    <string name="crop_corn_tip">No dejes secar el suelo durante la floración: es la etapa más crítica.</string>
+    <string name="crop_sugarcane">Caña de azúcar</string>
+    <string name="crop_sugarcane_desc">Requiere temperaturas altas y mucha agua durante el crecimiento vegetativo.</string>
+    <string name="crop_sugarcane_tip">Suspende el riego semanas antes de la cosecha para concentrar azúcares.</string>
+
+    <!-- Alertas -->
+    <string name="alerts_empty">Sin alertas. Todo marcha bien.</string>
+    <string name="alerts_mark_read">Marcar leídas</string>
+    <string name="alerts_clear">Borrar todas</string>
+    <string name="alerts_cleared">Alertas eliminadas</string>
+    <string name="alert_soil_dry_critical_title">Suelo muy seco</string>
+    <string name="alert_soil_dry_warn_title">Humedad baja</string>
+    <string name="alert_soil_dry_msg">La humedad bajó a %1$.0f%% (mínimo ideal %2$.0f%%). Riega cuanto antes.</string>
+    <string name="alert_soil_wet_title">Exceso de agua</string>
+    <string name="alert_soil_wet_msg">La humedad subió a %1$.0f%% (máximo ideal %2$.0f%%). Suspende el riego y revisa el drenaje.</string>
+    <string name="alert_heat_title">Temperatura alta</string>
+    <string name="alert_heat_msg">El ambiente está a %1$.1f °C (máximo ideal %2$.0f °C). Protege el cultivo y ajusta el horario de riego.</string>
+    <string name="alert_cold_title">Temperatura baja</string>
+    <string name="alert_cold_msg">El ambiente bajó a %1$.1f °C (mínimo ideal %2$.0f °C). Vigila el riesgo de daño por frío.</string>
+    <string name="alert_battery_title">Batería baja del dispositivo</string>
+    <string name="alert_battery_msg">La batería del ESP32 está en %1$d%%. Recárgala o revisa el panel solar.</string>
+    <string name="alert_offline_title">Dispositivo sin conexión</string>
+    <string name="alert_offline_msg">No se reciben datos de «%1$s» desde hace más de 15 minutos. Verifica la energía y el WiFi.</string>
+
+    <!-- Ajustes -->
+    <string name="settings_data_source">Fuente de datos</string>
+    <string name="ds_simulated">Modo demostración (datos simulados)</string>
+    <string name="ds_http">Dispositivo real (WiFi / Firebase)</string>
+    <string name="ds_help">En modo real, cada huerto usa la URL que configures en «Mis huertos». Debe devolver un JSON con los sensores (ver README).</string>
+    <string name="ds_need_url">Ningún huerto tiene URL de dispositivo. Configúrala en «Mis huertos».</string>
+    <string name="settings_poll">Frecuencia de actualización</string>
+    <string name="poll_seconds">Cada %1$d segundos</string>
+    <string name="settings_notifications">Notificaciones de alertas</string>
+    <string name="settings_background">Monitoreo en segundo plano</string>
+    <string name="settings_background_help">Revisa los sensores cada 15 minutos aunque la app esté cerrada.</string>
+    <string name="settings_manage_huertos">Mis huertos</string>
+    <string name="settings_manage_huertos_sub">Agregar, editar o eliminar huertos</string>
+    <string name="settings_data">Datos</string>
+    <string name="settings_regen">Regenerar datos de demostración</string>
+    <string name="settings_clear">Borrar historial</string>
+    <string name="settings_about">Acerca del proyecto</string>
+    <string name="settings_about_sub">Equipo e información de la aplicación</string>
+    <string name="confirm_clear_title">¿Borrar historial?</string>
+    <string name="confirm_clear_msg">Se eliminarán todas las lecturas guardadas. Esta acción no se puede deshacer.</string>
+    <string name="history_cleared">Historial eliminado</string>
+    <string name="demo_regenerated">Datos de demostración regenerados</string>
+    <string name="about_title">Huerto Inteligente</string>
+    <string name="about_message">Sistema IoT de monitoreo agrícola para huertos de Virú y Chao. Un dispositivo con ESP32, sensor DHT22 y sondas de suelo envía humedad del suelo, temperatura y humedad ambiental, para ayudar a decidir cuándo y cuánto regar.\n\nEquipo:\n• Gavidia Pérez, Deybi\n• Huaman Rojas, Franco\n• Isla Landa, Nadim\n• Murrugarra Morante, Nicole\n• Rafael Sihuenza, Gabriel\n\nCurso: Investigación e Innovación Tecnológica\n\n%1$s</string>
+    <string name="version_fmt">Versión %1$s</string>
+
+    <!-- Huertos -->
+    <string name="huertos_empty">Aún no tienes huertos. Toca + para agregar uno.</string>
+    <string name="huerto_add">Agregar huerto</string>
+    <string name="huerto_edit">Editar huerto</string>
+    <string name="huerto_name">Nombre del huerto</string>
+    <string name="huerto_location">Ubicación (ej. Virú, La Libertad)</string>
+    <string name="huerto_crop">Cultivo</string>
+    <string name="huerto_area">Área (hectáreas)</string>
+    <string name="huerto_url">URL del dispositivo (ESP32 o Firebase)</string>
+    <string name="huerto_url_hint">http://192.168.1.50/data</string>
+    <string name="huerto_test">Probar conexión</string>
+    <string name="huerto_test_ok">Conexión correcta. Humedad del suelo: %1$.0f%%</string>
+    <string name="huerto_test_fail">No se pudo conectar: %1$s</string>
+    <string name="huerto_test_empty">Escribe primero la URL del dispositivo</string>
+    <string name="huerto_name_required">Escribe un nombre</string>
+    <string name="huerto_delete_title">¿Eliminar huerto?</string>
+    <string name="huerto_delete_msg">Se borrarán también sus lecturas, alertas y registros de riego.</string>
+    <string name="huerto_saved">Huerto guardado</string>
+    <string name="huerto_deleted">Huerto eliminado</string>
+    <string name="huerto_last_one">Debe existir al menos un huerto</string>
+    <string name="huerto_switch_title">Selecciona un huerto</string>
+    <string name="huerto_manage">Gestionar</string>
+    <string name="huerto_active">Activo</string>
+    <string name="area_fmt">%1$.1f ha</string>
+    <string name="error_generic">Error de conexión: %1$s</string>
+</resources>

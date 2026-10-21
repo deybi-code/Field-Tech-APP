@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.huertointeligente.app.ui.home.HomeFragment"
+        android:label="@string/nav_home" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.huertointeligente.app.ui.history.HistoryFragment"
+        android:label="@string/nav_history" />
+    <fragment
+        android:id="@+id/irrigationFragment"
+        android:name="com.huertointeligente.app.ui.irrigation.IrrigationFragment"
+        android:label="@string/nav_irrigation" />
+    <fragment
+        android:id="@+id/cropsFragment"
+        android:name="com.huertointeligente.app.ui.crops.CropsFragment"
+        android:label="@string/nav_crops" />
+    <fragment
+        android:id="@+id/alertsFragment"
+        android:name="com.huertointeligente.app.ui.alerts.AlertsFragment"
+        android:label="@string/nav_alerts" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.huertointeligente.app.ui.settings.SettingsFragment"
+        android:label="@string/nav_settings" />
+    <fragment
+        android:id="@+id/huertosFragment"
+        android:name="com.huertointeligente.app.ui.huertos.HuertosFragment"
+        android:label="@string/nav_huertos" />
+</navigation>

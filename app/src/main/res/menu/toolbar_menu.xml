@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_toggle_theme"
+        android:icon="@drawable/ic_moon"
+        android:title="@string/action_toggle_theme"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_switch_huerto"
+        android:icon="@drawable/ic_place"
+        android:title="@string/action_switch_huerto"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/action_settings"
+        app:showAsAction="always" />
+</menu>

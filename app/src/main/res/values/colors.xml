@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+
+    <!-- Marca FieldTech (Dominante Celeste, Azul Marino, Verde y Blanco) -->
+    <color name="brand">#FF00A3C4</color> <!-- Celeste Eléctrico Principal (Dominante) -->
+    <color name="on_brand">#FFFFFFFF</color>
+    <color name="brand_container">#FFE0F7FA</color> <!-- Contenedor Celeste Suave -->
+    <color name="on_brand_container">#FF00364A</color>
+
+    <color name="secondary">#FF002B49</color> <!-- Azul Marino Profundo (Secundario) -->
+    <color name="accent_green">#FF23B14D</color> <!-- Verde Hoja -->
+
+    <!-- Superficies Claras y Frescas -->
+    <color name="bg">#FFF0F9FC</color> <!-- Fondo Blanco con ligero tinte celeste -->
+    <color name="surface">#FFFFFFFF</color>
+    <color name="surface_high">#FFFFFFFF</color>
+    <color name="card_bg">#FFFFFFFF</color>
+    <color name="outline_soft">#FFB2EBF2</color>
+    <color name="text_primary">#FF041B29</color>
+    <color name="text_secondary">#FF4C6E80</color>
+
+    <!-- Estados Vibrantes -->
+    <color name="status_ok">#FF23B14D</color>
+    <color name="status_warn">#FFF57C00</color>
+    <color name="status_bad">#FFD32F2F</color>
+    <color name="status_info">#FF00A3C4</color>
+
+    <!-- Métricas -->
+    <color name="metric_soil">#FF00A3C4</color>
+    <color name="metric_soil_temp">#FF8D6E63</color>
+    <color name="metric_air_temp">#FFF4511E</color>
+    <color name="metric_air_hum">#FF008EA9</color>
+    <color name="metric_vpd">#FF8E24AA</color>
+
+    <!-- Degradados Frescos Celeste/Blanco -->
+    <color name="grad_start">#FFE0F7FA</color>
+    <color name="grad_center">#FFEDF9FC</color>
+    <color name="grad_end">#FFFFFFFF</color>
+</resources>

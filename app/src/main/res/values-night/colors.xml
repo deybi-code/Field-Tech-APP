@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+
+    <!-- Marca FieldTech Adaptada a Modo Oscuro (Celeste Neón, Azul Marino Noche, Verde) -->
+    <color name="brand">#FF00E5FF</color> <!-- Celeste Neón/Brillante (Dominante) -->
+    <color name="on_brand">#FF002030</color>
+    <color name="brand_container">#FF003B52</color> <!-- Azul Marino Contenedor -->
+    <color name="on_brand_container">#FFE0F7FA</color>
+
+    <color name="secondary">#FF23B14D</color> <!-- Verde Hoja -->
+    <color name="accent_green">#FF23B14D</color>
+
+    <!-- Superficies limpias y profundas en Azul Noche -->
+    <color name="bg">#FF061018</color>
+    <color name="surface">#FF0C1A26</color>
+    <color name="surface_high">#FF122434</color>
+    <color name="card_bg">#FF0F202E</color>
+    <color name="outline_soft">#FF18364C</color>
+    <color name="text_primary">#FFE1F5FE</color>
+    <color name="text_secondary">#FF80B2CC</color>
+
+    <!-- Estados vibrantes -->
+    <color name="status_ok">#FF23B14D</color>
+    <color name="status_warn">#FFFFA726</color>
+    <color name="status_bad">#FFEF5350</color>
+    <color name="status_info">#FF00E5FF</color>
+
+    <!-- Métricas -->
+    <color name="metric_soil">#FF00E5FF</color>
+    <color name="metric_soil_temp">#FFBCAAA4</color>
+    <color name="metric_air_temp">#FFFF8A65</color>
+    <color name="metric_air_hum">#FF00E5FF</color>
+    <color name="metric_vpd">#FFCE93D8</color>
+
+    <!-- Degradados Oscuros Azul Noche -->
+    <color name="grad_start">#FF0A1C2A</color>
+    <color name="grad_center">#FF0A141E</color>
+    <color name="grad_end">#FF061018</color>
+</resources>
