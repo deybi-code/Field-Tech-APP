@@ -6,7 +6,10 @@ data class Huerto(
     val location: String = "",
     val cropId: String? = null,
     val areaHa: Double = 0.0,
-    val deviceUrl: String = ""
+    val deviceUrl: String = "",
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0,
+    val radiusMeters: Double = 1000.0
 )
 
 data class SensorReading(

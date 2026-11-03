@@ -3,39 +3,39 @@
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
 
-    <!-- Marca FieldTech Adaptada a Modo Oscuro (Celeste Neón, Azul Marino Noche, Verde) -->
-    <color name="brand">#FF00E5FF</color> <!-- Celeste Neón/Brillante (Dominante) -->
-    <color name="on_brand">#FF002030</color>
-    <color name="brand_container">#FF003B52</color> <!-- Azul Marino Contenedor -->
-    <color name="on_brand_container">#FFE0F7FA</color>
+    <!-- Paleta de Marca Nocturna Basada en el Logo FieldTech -->
+    <color name="brand">#00E5FF</color> <!-- Celeste Neón Tecnológico -->
+    <color name="on_brand">#001B2E</color>
+    <color name="brand_container">#0B2238</color> <!-- Contenedor Noche Azul Marino -->
+    <color name="on_brand_container">#B3F2FF</color>
 
-    <color name="secondary">#FF23B14D</color> <!-- Verde Hoja -->
-    <color name="accent_green">#FF23B14D</color>
+    <color name="secondary">#00A3C4</color>
+    <color name="accent_green">#2FE067</color>
 
-    <!-- Superficies limpias y profundas en Azul Noche -->
-    <color name="bg">#FF061018</color>
-    <color name="surface">#FF0C1A26</color>
-    <color name="surface_high">#FF122434</color>
-    <color name="card_bg">#FF0F202E</color>
-    <color name="outline_soft">#FF18364C</color>
-    <color name="text_primary">#FFE1F5FE</color>
-    <color name="text_secondary">#FF80B2CC</color>
+    <!-- Fondo y Superficies Nocturnas Tecnológicas -->
+    <color name="bg">#06121E</color> <!-- Fondo Azul Noche Profundo -->
+    <color name="surface">#0D1C2A</color> <!-- Tarjeta Azul Tecnológico -->
+    <color name="surface_high">#14273A</color>
+    <color name="card_bg">#0E1F30</color>
+    <color name="outline_soft">#18334D</color>
+    <color name="text_primary">#E1F7FC</color> <!-- Texto Claro de Alto Contraste -->
+    <color name="text_secondary">#78A1C4</color>
 
-    <!-- Estados vibrantes -->
-    <color name="status_ok">#FF23B14D</color>
-    <color name="status_warn">#FFFFA726</color>
-    <color name="status_bad">#FFEF5350</color>
-    <color name="status_info">#FF00E5FF</color>
+    <!-- Estados Nocturnos -->
+    <color name="status_ok">#2FE067</color>
+    <color name="status_warn">#FFA726</color>
+    <color name="status_bad">#FF5252</color>
+    <color name="status_info">#00E5FF</color>
 
-    <!-- Métricas -->
-    <color name="metric_soil">#FF00E5FF</color>
-    <color name="metric_soil_temp">#FFBCAAA4</color>
-    <color name="metric_air_temp">#FFFF8A65</color>
-    <color name="metric_air_hum">#FF00E5FF</color>
-    <color name="metric_vpd">#FFCE93D8</color>
+    <!-- Métricas Nocturnas -->
+    <color name="metric_soil">#00E5FF</color>
+    <color name="metric_soil_temp">#2FE067</color>
+    <color name="metric_air_temp">#FF6B6B</color>
+    <color name="metric_air_hum">#00E5FF</color>
+    <color name="metric_vpd">#80D8FF</color>
 
-    <!-- Degradados Oscuros Azul Noche -->
-    <color name="grad_start">#FF0A1C2A</color>
-    <color name="grad_center">#FF0A141E</color>
-    <color name="grad_end">#FF061018</color>
+    <!-- Degradados Oscuros -->
+    <color name="grad_start">#0B2238</color>
+    <color name="grad_center">#08192A</color>
+    <color name="grad_end">#06121E</color>
 </resources>

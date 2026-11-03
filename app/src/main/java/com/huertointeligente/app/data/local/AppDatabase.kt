@@ -28,7 +28,10 @@ class AppDatabase(context: Context) :
                 location TEXT NOT NULL DEFAULT '',
                 crop_id TEXT,
                 area_ha REAL NOT NULL DEFAULT 0,
-                device_url TEXT NOT NULL DEFAULT ''
+                device_url TEXT NOT NULL DEFAULT '',
+                latitude REAL NOT NULL DEFAULT 0,
+                longitude REAL NOT NULL DEFAULT 0,
+                radius_meters REAL NOT NULL DEFAULT 1000
             )"""
         )
         db.execSQL(
@@ -70,8 +73,8 @@ class AppDatabase(context: Context) :
         )
 
         // Huertos de ejemplo (zonas de Virú y Chao, La Libertad)
-        seedHuerto(db, "Huerto Virú · Lote 1", "Virú, La Libertad", "asparagus", 2.5)
-        seedHuerto(db, "Huerto Chao · Lote A", "Chao, La Libertad", "blueberry", 1.2)
+        seedHuerto(db, "Huerto Virú · Lote 1", "Virú, La Libertad", "asparagus", 2.5, -8.4130, -78.7880)
+        seedHuerto(db, "Huerto Chao · Lote A", "Chao, La Libertad", "blueberry", 1.2, -8.5420, -78.6800)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -82,13 +85,24 @@ class AppDatabase(context: Context) :
         onCreate(db)
     }
 
-    private fun seedHuerto(db: SQLiteDatabase, name: String, location: String, crop: String, area: Double) {
+    private fun seedHuerto(
+        db: SQLiteDatabase,
+        name: String,
+        location: String,
+        crop: String,
+        area: Double,
+        lat: Double = 0.0,
+        lng: Double = 0.0
+    ) {
         val v = ContentValues().apply {
             put("name", name)
             put("location", location)
             put("crop_id", crop)
             put("area_ha", area)
             put("device_url", "")
+            put("latitude", lat)
+            put("longitude", lng)
+            put("radius_meters", 1000.0)
         }
         db.insert("huertos", null, v)
     }
@@ -222,6 +236,9 @@ class AppDatabase(context: Context) :
         put("crop_id", cropId)
         put("area_ha", areaHa)
         put("device_url", deviceUrl)
+        put("latitude", latitude)
+        put("longitude", longitude)
+        put("radius_meters", radiusMeters)
     }
 
     private fun SensorReading.toValues() = ContentValues().apply {
@@ -244,7 +261,10 @@ class AppDatabase(context: Context) :
         location = getString(col("location")) ?: "",
         cropId = if (isNull(col("crop_id"))) null else getString(col("crop_id")),
         areaHa = getDouble(col("area_ha")),
-        deviceUrl = getString(col("device_url")) ?: ""
+        deviceUrl = getString(col("device_url")) ?: "",
+        latitude = if (getColumnIndex("latitude") >= 0) getDouble(col("latitude")) else 0.0,
+        longitude = if (getColumnIndex("longitude") >= 0) getDouble(col("longitude")) else 0.0,
+        radiusMeters = if (getColumnIndex("radius_meters") >= 0) getDouble(col("radius_meters")) else 1000.0
     )
 
     private fun Cursor.toReading() = SensorReading(
@@ -281,6 +301,6 @@ class AppDatabase(context: Context) :
 
     private companion object {
         const val DB_NAME = "huerto_inteligente.db"
-        const val DB_VERSION = 1
+        const val DB_VERSION = 2
     }
 }

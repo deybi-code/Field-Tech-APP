@@ -10,8 +10,11 @@ import com.huertointeligente.app.data.model.IrrigationLog
 import com.huertointeligente.app.data.model.SensorReading
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -56,6 +59,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _irrigations = MutableStateFlow<List<IrrigationLog>>(emptyList())
     val irrigations: StateFlow<List<IrrigationLog>> = _irrigations.asStateFlow()
 
+    private val _autoSwitchEvent = MutableSharedFlow<String>(extraBufferCapacity = 1)
+    val autoSwitchEvent: SharedFlow<String> = _autoSwitchEvent.asSharedFlow()
+
+    private val _lotPromptEvent = MutableSharedFlow<Huerto>(extraBufferCapacity = 1)
+    val lotPromptEvent: SharedFlow<Huerto> = _lotPromptEvent.asSharedFlow()
+
+    private var lastAutoSwitchedId: Long = -1L
+    private var lastPromptedHuertoId: Long = -1L
+
     private val refreshMutex = Mutex()
     private var pollJob: Job? = null
     private var inForeground = false
@@ -94,6 +106,50 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             applySelection(_huertos.value.firstOrNull { it.id == id })
         }
+    }
+
+    /**
+     * Algoritmo de Geofencing para detección y cambio automático de lotes según la ubicación GPS.
+     */
+    fun onLocationUpdated(userLat: Double, userLng: Double) {
+        if (!prefs.autoLotDetection) return
+        val list = _huertos.value
+        if (list.isEmpty()) return
+
+        var matchedHuerto: Huerto? = null
+        var minDistance = Double.MAX_VALUE
+
+        // Evaluar por radio de geocerca del lote
+        for (h in list) {
+            if (h.latitude == 0.0 && h.longitude == 0.0) continue
+            val dist = distanceMeters(userLat, userLng, h.latitude, h.longitude)
+            if (dist <= h.radiusMeters && dist < minDistance) {
+                minDistance = dist
+                matchedHuerto = h
+            }
+        }
+
+        matchedHuerto?.let { target ->
+            val currentId = _selected.value?.id
+            if (target.id != currentId && target.id != lastPromptedHuertoId) {
+                lastPromptedHuertoId = target.id
+                viewModelScope.launch {
+                    _autoSwitchEvent.emit("📍 Geocerca GPS: Te encuentras en ${target.name}. Se cambió la vista automáticamente.")
+                    applySelection(target)
+                }
+            }
+        }
+    }
+
+    private fun distanceMeters(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+        val r = 6371000.0
+        val dLat = Math.toRadians(lat2 - lat1)
+        val dLon = Math.toRadians(lon2 - lon1)
+        val a = kotlin.math.sin(dLat / 2) * kotlin.math.sin(dLat / 2) +
+                kotlin.math.cos(Math.toRadians(lat1)) * kotlin.math.cos(Math.toRadians(lat2)) *
+                kotlin.math.sin(dLon / 2) * kotlin.math.sin(dLon / 2)
+        val c = 2 * kotlin.math.atan2(kotlin.math.sqrt(a), kotlin.math.sqrt(1 - a))
+        return r * c
     }
 
     // -------------------------------------------------------------- Polling

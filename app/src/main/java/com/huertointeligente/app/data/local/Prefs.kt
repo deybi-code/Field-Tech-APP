@@ -10,7 +10,7 @@ class Prefs(context: Context) {
 
     var mode: DataSourceMode
         get() = runCatching { DataSourceMode.valueOf(sp.getString(K_MODE, "") ?: "") }
-            .getOrDefault(DataSourceMode.SIMULATED)
+            .getOrDefault(DataSourceMode.HTTP)
         set(value) = sp.edit().putString(K_MODE, value.name).apply()
 
     var pollSeconds: Int
@@ -33,6 +33,10 @@ class Prefs(context: Context) {
         get() = sp.getBoolean(K_DARK_MODE, false)
         set(value) = sp.edit().putBoolean(K_DARK_MODE, value).apply()
 
+    var autoLotDetection: Boolean
+        get() = sp.getBoolean(K_AUTO_LOT, true)
+        set(value) = sp.edit().putBoolean(K_AUTO_LOT, value).apply()
+
     private companion object {
         const val K_MODE = "mode"
         const val K_POLL = "poll_seconds"
@@ -40,5 +44,6 @@ class Prefs(context: Context) {
         const val K_BG = "background"
         const val K_SELECTED = "selected_huerto"
         const val K_DARK_MODE = "dark_mode"
+        const val K_AUTO_LOT = "auto_lot"
     }
 }

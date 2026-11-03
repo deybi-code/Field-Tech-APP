@@ -13,6 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
@@ -86,6 +87,8 @@ class HuertosFragment : Fragment() {
             db.etLocation.setText(it.location)
             db.etArea.setText(if (it.areaHa > 0) it.areaHa.toString() else "")
             db.etUrl.setText(it.deviceUrl)
+            if (it.latitude != 0.0) db.etLat.setText(it.latitude.toString())
+            if (it.longitude != 0.0) db.etLng.setText(it.longitude.toString())
             val idx = cropIds.indexOf(it.cropId).coerceAtLeast(0)
             db.acCrop.setText(cropNames[idx], false)
         } ?: db.acCrop.setText(cropNames[0], false)
@@ -107,6 +110,23 @@ class HuertosFragment : Fragment() {
                 .addOnFailureListener { e ->
                     Toast.makeText(requireContext(), "Error al escanear: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
+        }
+
+        db.btnUseCurrentLocation.setOnClickListener {
+            val client = LocationServices.getFusedLocationProviderClient(requireContext())
+            try {
+                client.lastLocation.addOnSuccessListener { loc ->
+                    if (loc != null) {
+                        db.etLat.setText(loc.latitude.toString())
+                        db.etLng.setText(loc.longitude.toString())
+                        Toast.makeText(requireContext(), "Ubicación GPS capturada", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(requireContext(), "Asegúrate de activar el GPS", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } catch (e: SecurityException) {
+                Toast.makeText(requireContext(), "Permiso de ubicación no concedido", Toast.LENGTH_SHORT).show()
+            }
         }
 
         db.btnTest.setOnClickListener {
@@ -152,7 +172,9 @@ class HuertosFragment : Fragment() {
                     location = db.etLocation.text?.toString()?.trim().orEmpty(),
                     cropId = cropIds[cropIdx],
                     areaHa = db.etArea.text?.toString()?.toDoubleOrNull() ?: 0.0,
-                    deviceUrl = db.etUrl.text?.toString()?.trim().orEmpty()
+                    deviceUrl = db.etUrl.text?.toString()?.trim().orEmpty(),
+                    latitude = db.etLat.text?.toString()?.toDoubleOrNull() ?: 0.0,
+                    longitude = db.etLng.text?.toString()?.toDoubleOrNull() ?: 0.0
                 )
                 vm.saveHuerto(h)
                 Toast.makeText(requireContext(), R.string.huerto_saved, Toast.LENGTH_SHORT).show()

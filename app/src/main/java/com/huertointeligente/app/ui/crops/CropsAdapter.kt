@@ -44,7 +44,10 @@ class CropsAdapter(private val onClick: (CropRow) -> Unit) : RecyclerView.Adapte
             b.tvScore.setTextColor(color)
             b.tvLabel.setText(Analyzer.compatLabelRes(row.score))
             b.tvInUse.visibility = if (row.inUse) android.view.View.VISIBLE else android.view.View.GONE
-            b.root.setOnClickListener { onClick(row) }
+            b.root.setOnClickListener {
+                android.transition.TransitionManager.beginDelayedTransition(b.root as ViewGroup)
+                onClick(row)
+            }
         }
     }
 }

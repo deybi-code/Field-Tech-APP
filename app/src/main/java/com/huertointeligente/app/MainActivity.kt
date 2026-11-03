@@ -17,7 +17,14 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.huertointeligente.app.databinding.ActivityMainBinding
 import com.huertointeligente.app.ui.MainViewModel
 import kotlinx.coroutines.launch
@@ -28,13 +35,24 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private val vm: MainViewModel by viewModels()
 
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var locationCallback: LocationCallback? = null
+
     private val notificationPermission =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { /* sin acción */ }
+
+    private val locationPermission =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            val granted = (permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true) ||
+                    (permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true)
+            if (granted) {
+                startLocationUpdates()
+            }
+        }
 
     private val topLevelDestinations = setOf(
         R.id.homeFragment,
         R.id.historyFragment,
-        R.id.irrigationFragment,
         R.id.cropsFragment,
         R.id.alertsFragment,
     )
@@ -74,16 +92,98 @@ class MainActivity : AppCompatActivity() {
         // Navegación inferior
         binding.bottomNav.setupWithNavController(navController)
 
+        // Botón Central Sobresaliente de IA con Animación
+        binding.fabAi.setOnClickListener {
+            if (navController.currentDestination?.id != R.id.aiFragment) {
+                navController.navigate(R.id.aiFragment)
+            }
+        }
+        startAiButtonAnimation()
+
         // Mostrar/ocultar barras según el destino
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val isTop = destination.id in topLevelDestinations
-            binding.bottomNav.visibility = if (isTop) android.view.View.VISIBLE else android.view.View.GONE
+            binding.bottomNav.visibility = android.view.View.VISIBLE
             binding.toolbar.menu.findItem(R.id.action_switch_huerto)?.isVisible = isTop
             binding.toolbar.menu.findItem(R.id.action_settings)?.isVisible = isTop
+            binding.fabAi.isSelected = (destination.id == R.id.aiFragment)
         }
 
         observeState()
+        observeAutoSwitchEvents()
         askNotificationPermission()
+        
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        askLocationPermission()
+    }
+
+    private fun askLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        ) {
+            startLocationUpdates()
+        } else {
+            locationPermission.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                )
+            )
+        }
+    }
+
+    private fun startLocationUpdates() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+            ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            location?.let {
+                vm.onLocationUpdated(it.latitude, it.longitude)
+            }
+        }
+
+        val request = LocationRequest.Builder(Priority.PRIORITY_BALANCED_POWER_ACCURACY, 10_000L)
+            .setMinUpdateIntervalMillis(5_000L)
+            .build()
+
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(result: LocationResult) {
+                for (loc in result.locations) {
+                    vm.onLocationUpdated(loc.latitude, loc.longitude)
+                }
+            }
+        }
+        fusedLocationClient.requestLocationUpdates(request, locationCallback!!, mainLooper)
+    }
+
+    private fun observeAutoSwitchEvents() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    vm.autoSwitchEvent.collect { message ->
+                        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+                            .setAnchorView(binding.bottomNav)
+                            .show()
+                    }
+                }
+                launch {
+                    vm.lotPromptEvent.collect { targetHuerto ->
+                        MaterialAlertDialogBuilder(this@MainActivity)
+                            .setTitle("Cambio de Huerto Detectado")
+                            .setMessage("Detectamos que estás en el huerto ${targetHuerto.name}. ¿Deseas cambiar la vista a este huerto?")
+                            .setPositiveButton("Aceptar") { dialog, _ ->
+                                vm.selectHuerto(targetHuerto.id)
+                                dialog.dismiss()
+                            }
+                            .setNegativeButton("Cancelar", null)
+                            .show()
+                    }
+                }
+            }
+        }
     }
 
     private fun toggleTheme() {
@@ -147,6 +247,24 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
+    private fun startAiButtonAnimation() {
+        val fab = binding.fabAi
+        val scaleX = android.animation.ObjectAnimator.ofFloat(fab, "scaleX", 1f, 1.12f, 1f).apply {
+            duration = 1400
+            repeatCount = android.animation.ObjectAnimator.INFINITE
+            repeatMode = android.animation.ObjectAnimator.RESTART
+        }
+        val scaleY = android.animation.ObjectAnimator.ofFloat(fab, "scaleY", 1f, 1.12f, 1f).apply {
+            duration = 1400
+            repeatCount = android.animation.ObjectAnimator.INFINITE
+            repeatMode = android.animation.ObjectAnimator.RESTART
+        }
+        android.animation.AnimatorSet().apply {
+            playTogether(scaleX, scaleY)
+            start()
+        }
+    }
+
     private fun askNotificationPermission() {
         if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) &&
             vm.prefs.notificationsEnabled &&
@@ -159,11 +277,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        vm.setForeground(true)
+        vm.setForeground(value = true)
     }
 
     override fun onStop() {
-        vm.setForeground(false)
+        vm.setForeground(value = false)
         super.onStop()
+    }
+
+    override fun onDestroy() {
+        locationCallback?.let { fusedLocationClient.removeLocationUpdates(it) }
+        super.onDestroy()
     }
 }

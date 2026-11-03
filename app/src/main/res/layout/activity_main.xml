@@ -34,6 +34,7 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
 
+    <!-- Barra de Navegación Inferior -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
@@ -46,5 +47,27 @@
         app:itemTextColor="@color/brand"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav" />
+
+    <!-- Botón Central Armónico de IA / Chatbot (Elevación superior a la barra inferior) -->
+    <FrameLayout
+        android:id="@+id/fab_ai"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/bg_fab_ai"
+        android:elevation="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_sparkles"
+            app:tint="@android:color/white"
+            android:importantForAccessibility="no" />
+    </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

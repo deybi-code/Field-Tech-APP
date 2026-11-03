@@ -25,6 +25,10 @@
         android:name="com.huertointeligente.app.ui.alerts.AlertsFragment"
         android:label="@string/nav_alerts" />
     <fragment
+        android:id="@+id/aiFragment"
+        android:name="com.huertointeligente.app.ui.ai.AiFragment"
+        android:label="Asistente IA" />
+    <fragment
         android:id="@+id/settingsFragment"
         android:name="com.huertointeligente.app.ui.settings.SettingsFragment"
         android:label="@string/nav_settings" />

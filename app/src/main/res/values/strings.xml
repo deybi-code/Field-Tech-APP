@@ -7,6 +7,7 @@
     <string name="nav_history">Historial</string>
     <string name="nav_irrigation">Riego</string>
     <string name="nav_crops">Cultivos</string>
+    <string name="nav_crops_irrigation">Cultivos &amp; Riego</string>
     <string name="nav_alerts">Alertas</string>
     <string name="nav_settings">Ajustes</string>
     <string name="nav_huertos">Mis huertos</string>
@@ -185,6 +186,8 @@
     <string name="settings_notifications">Notificaciones de alertas</string>
     <string name="settings_background">Monitoreo en segundo plano</string>
     <string name="settings_background_help">Revisa los sensores cada 15 minutos aunque la app esté cerrada.</string>
+    <string name="settings_auto_lot">Detección automática de huerto</string>
+    <string name="settings_auto_lot_sub">Preguntar cuando el GPS detecte un huerto cercano</string>
     <string name="settings_manage_huertos">Mis huertos</string>
     <string name="settings_manage_huertos_sub">Agregar, editar o eliminar huertos</string>
     <string name="settings_data">Datos</string>
@@ -208,6 +211,8 @@
     <string name="huerto_location">Ubicación (ej. Virú, La Libertad)</string>
     <string name="huerto_crop">Cultivo</string>
     <string name="huerto_area">Área (hectáreas)</string>
+    <string name="huerto_lat">Latitud GPS</string>
+    <string name="huerto_lng">Longitud GPS</string>
     <string name="huerto_url">URL del dispositivo (ESP32 o Firebase)</string>
     <string name="huerto_url_hint">http://192.168.1.50/data</string>
     <string name="huerto_test">Probar conexión</string>

@@ -3,39 +3,40 @@
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
 
-    <!-- Marca FieldTech (Dominante Celeste, Azul Marino, Verde y Blanco) -->
-    <color name="brand">#FF00A3C4</color> <!-- Celeste Eléctrico Principal (Dominante) -->
+    <!-- Paleta de Marca Basada en el Logo Oficial FieldTech -->
+    <!-- Celeste Eléctrico Dominante (#00A3C4), Azul Marino Profundo (#002B49), Verde Botánico (#23B14D) -->
+    <color name="brand">#00A3C4</color> <!-- Celeste Eléctrico Principal del Logo -->
     <color name="on_brand">#FFFFFFFF</color>
-    <color name="brand_container">#FFE0F7FA</color> <!-- Contenedor Celeste Suave -->
-    <color name="on_brand_container">#FF00364A</color>
+    <color name="brand_container">#E3F6FA</color> <!-- Contenedor Celeste Helado -->
+    <color name="on_brand_container">#002B49</color>
 
-    <color name="secondary">#FF002B49</color> <!-- Azul Marino Profundo (Secundario) -->
-    <color name="accent_green">#FF23B14D</color> <!-- Verde Hoja -->
+    <color name="secondary">#002B49</color> <!-- Azul Marino del Logo -->
+    <color name="accent_green">#23B14D</color> <!-- Verde Hoja del Logo -->
 
-    <!-- Superficies Claras y Frescas -->
-    <color name="bg">#FFF0F9FC</color> <!-- Fondo Blanco con ligero tinte celeste -->
+    <!-- Superficies Claras y Frescas de Alto Rendimiento -->
+    <color name="bg">#F0F9FB</color> <!-- Fondo con tinte fresco celeste ice -->
     <color name="surface">#FFFFFFFF</color>
     <color name="surface_high">#FFFFFFFF</color>
     <color name="card_bg">#FFFFFFFF</color>
-    <color name="outline_soft">#FFB2EBF2</color>
-    <color name="text_primary">#FF041B29</color>
-    <color name="text_secondary">#FF4C6E80</color>
+    <color name="outline_soft">#C3E8F0</color>
+    <color name="text_primary">#002B49</color> <!-- Texto Azul Marino Profundo -->
+    <color name="text_secondary">#4A6D8C</color>
 
-    <!-- Estados Vibrantes -->
-    <color name="status_ok">#FF23B14D</color>
-    <color name="status_warn">#FFF57C00</color>
-    <color name="status_bad">#FFD32F2F</color>
-    <color name="status_info">#FF00A3C4</color>
+    <!-- Estados Agronómicos -->
+    <color name="status_ok">#23B14D</color> <!-- Verde Hoja -->
+    <color name="status_warn">#FF8C00</color> <!-- Ámbar Solar -->
+    <color name="status_bad">#E74C3C</color> <!-- Rojo Alerta -->
+    <color name="status_info">#00A3C4</color> <!-- Celeste Info -->
 
-    <!-- Métricas -->
-    <color name="metric_soil">#FF00A3C4</color>
-    <color name="metric_soil_temp">#FF8D6E63</color>
-    <color name="metric_air_temp">#FFF4511E</color>
-    <color name="metric_air_hum">#FF008EA9</color>
-    <color name="metric_vpd">#FF8E24AA</color>
+    <!-- Métricas del Sensor IoT -->
+    <color name="metric_soil">#00A3C4</color>
+    <color name="metric_soil_temp">#23B14D</color>
+    <color name="metric_air_temp">#FF6B6B</color>
+    <color name="metric_air_hum">#00E5FF</color>
+    <color name="metric_vpd">#002B49</color>
 
-    <!-- Degradados Frescos Celeste/Blanco -->
-    <color name="grad_start">#FFE0F7FA</color>
-    <color name="grad_center">#FFEDF9FC</color>
+    <!-- Degradados Estéticos -->
+    <color name="grad_start">#E3F6FA</color>
+    <color name="grad_center">#EDF9FC</color>
     <color name="grad_end">#FFFFFFFF</color>
 </resources>

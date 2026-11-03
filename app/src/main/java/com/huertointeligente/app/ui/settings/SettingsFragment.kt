@@ -57,6 +57,11 @@ class SettingsFragment : Fragment() {
             MonitorWorker.setEnabled(requireContext(), checked)
         }
 
+        b.switchAutoLot.isChecked = prefs.autoLotDetection
+        b.switchAutoLot.setOnCheckedChangeListener { _, checked ->
+            prefs.autoLotDetection = checked
+        }
+
         b.rowHuertos.setOnClickListener { findNavController().navigate(R.id.huertosFragment) }
         b.rowAbout.setOnClickListener { showAbout() }
         b.tvVersion.text = getString(R.string.version_fmt, BuildConfig.VERSION_NAME)

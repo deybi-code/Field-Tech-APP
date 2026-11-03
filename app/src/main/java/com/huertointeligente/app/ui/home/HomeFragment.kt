@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         b.swipe.setOnRefreshListener { vm.refresh() }
-        b.bannerCard.setOnClickListener { findNavController().navigate(R.id.irrigationFragment) }
+        b.bannerCard.setOnClickListener { findNavController().navigate(R.id.cropsFragment) }
         b.btnHistory.setOnClickListener { findNavController().navigate(R.id.historyFragment) }
         b.btnScanQr.setOnClickListener { scanQrAndSaveHuerto() }
 
@@ -68,7 +68,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun render(h: Huerto?, r: SensorReading?, c: MainViewModel.Conn) {
-        val ctx = requireContext()
+        val ctx = context ?: return
+        if (_binding == null) return
         val crop = Crops.forHuerto(h)
         b.swipe.isRefreshing = c is MainViewModel.Conn.Loading && r != null
 
@@ -166,7 +167,8 @@ class HomeFragment : Fragment() {
         formatter: (Float) -> String,
         vpdStyle: Boolean = false
     ) {
-        val ctx = requireContext()
+        val ctx = context ?: return
+        if (_binding == null) return
         val accent = ContextCompat.getColor(ctx, colorRes)
         card.metricIcon.setImageResource(icon)
         card.metricIcon.imageTintList = ColorStateList.valueOf(accent)
@@ -183,7 +185,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun renderConnection(r: SensorReading?, c: MainViewModel.Conn) {
-        val ctx = requireContext()
+        val ctx = context ?: return
+        if (_binding == null) return
         val stale = r != null && System.currentTimeMillis() - r.timestamp > 15 * 60 * 1000L
         val (text, color) = when {
             vm.prefs.mode == DataSourceMode.SIMULATED ->
@@ -199,7 +202,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun renderDevice(r: SensorReading?) {
-        val ctx = requireContext()
+        val ctx = context ?: return
+        if (_binding == null) return
         if (r == null || r.battery < 0) {
             b.tvBattery.text = getString(R.string.dash)
             b.progressBattery.progress = 0
