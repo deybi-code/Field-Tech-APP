@@ -230,4 +230,6 @@
     <string name="huerto_active">Activo</string>
     <string name="area_fmt">%1$.1f ha</string>
     <string name="error_generic">Error de conexión: %1$s</string>
+    <string name="toolbar_subtitle">Monitor en tiempo real</string>
+    <string name="ai_badge">✨ FieldTech AI · Groq</string>
 </resources>

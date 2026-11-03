@@ -32,7 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/brand_container"
-                    android:text="✨ FieldTech AI · Gemini 1.5 Flash"
+                    android:text="@string/ai_badge"
                     android:textColor="@color/brand"
                     android:textStyle="bold" />
             </LinearLayout>

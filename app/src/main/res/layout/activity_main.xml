@@ -1,73 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
+        android:id="@+id/appbar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/surface"
-        app:elevation="4dp">
+        app:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:logo="@drawable/ic_symbol"
-            app:title="FieldTech"
-            app:subtitle="Monitor en tiempo real"
+            app:subtitle="@string/toolbar_subtitle"
             app:subtitleTextColor="@color/text_secondary"
-            app:titleTextColor="@color/brand"
-            app:titleTextAppearance="@style/TextAppearance.Material3.TitleLarge" />
+            app:title="@string/app_name"
+            app:titleTextAppearance="@style/TextAppearance.Material3.TitleLarge"
+            app:titleTextColor="@color/brand" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- El contenido termina justo donde empieza la barra inferior (nada queda tapado) -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_marginBottom="?attr/actionBarSize"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
         app:navGraph="@navigation/nav_graph" />
 
-    <!-- Barra de Navegación Inferior -->
+    <!-- Barra de navegación inferior: 5 espacios iguales, el del centro está vacío para el botón de IA -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         android:background="@color/surface"
         app:elevation="8dp"
         app:itemActiveIndicatorStyle="@style/Widget.Material3.BottomNavigationView.ActiveIndicator"
         app:itemIconTint="@color/brand"
         app:itemTextColor="@color/brand"
         app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav" />
 
-    <!-- Botón Central Armónico de IA / Chatbot (Elevación superior a la barra inferior) -->
+    <!-- Botón de IA: centrado exacto sobre el espacio vacío de la barra, sobresale un poco hacia arriba -->
     <FrameLayout
         android:id="@+id/fab_ai"
         android:layout_width="54dp"
         android:layout_height="54dp"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="28dp"
         android:background="@drawable/bg_fab_ai"
-        android:elevation="16dp"
         android:clickable="true"
+        android:elevation="16dp"
         android:focusable="true"
-        android:foreground="?attr/selectableItemBackgroundBorderless">
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:translationY="-8dp"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bottom_nav">
 
         <ImageView
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_gravity="center"
+            android:importantForAccessibility="no"
             android:src="@drawable/ic_sparkles"
-            app:tint="@android:color/white"
-            android:importantForAccessibility="no" />
+            app:tint="@android:color/white" />
     </FrameLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -116,7 +116,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="8dp"
                     android:baselineAligned="false"
                     android:orientation="horizontal">
 
@@ -125,20 +125,20 @@
                         style="@style/Widget.Huerto.Card"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="6dp"
-                        android:layout_weight="1.1">
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:padding="12dp">
+                            android:padding="16dp">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
+                                android:gravity="center"
                                 android:text="@string/soil_moisture"
                                 android:textAppearance="?attr/textAppearanceBodyMedium"
                                 android:textColor="@color/text_primary"
@@ -182,8 +182,8 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="6dp"
-                        android:layout_weight="0.9"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <include
@@ -216,7 +216,7 @@
                         layout="@layout/item_metric_card"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp"
+                        android:layout_marginEnd="4dp"
                         android:layout_weight="1" />
 
                     <include
@@ -224,7 +224,7 @@
                         layout="@layout/item_metric_card"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
+                        android:layout_marginStart="4dp"
                         android:layout_weight="1" />
                 </LinearLayout>
 
@@ -235,7 +235,7 @@
                     style="@style/Widget.Huerto.Card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_marginTop="8dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -284,7 +284,7 @@
                     style="@style/Widget.Huerto.Card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp">
 
                     <LinearLayout
