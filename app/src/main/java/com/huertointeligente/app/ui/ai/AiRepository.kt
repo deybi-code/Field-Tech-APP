@@ -46,20 +46,25 @@ class AiRepository {
     ): Result<String> = withContext(Dispatchers.IO) {
         val key = AiConfig.GROQ_API_KEY.trim()
 
-        if (key.isNotEmpty() && !key.contains("PEGA_TU_CLAVE")) {
+        val hasRealKey = key.isNotEmpty() &&
+                !key.contains("PON_TU_API_KEY_AQUI") &&
+                !key.contains("PEGA_TU_CLAVE")
+
+        if (hasRealKey) {
             try {
                 val apiResult = callCloudVisionApi(userText, imageBitmap, huerto, reading, cropName, key)
                 if (apiResult.isSuccess) {
                     return@withContext apiResult
                 }
             } catch (_: Exception) {
-                // Fallback automático al motor de análisis directo
+                // Si falla la nube, se usa el motor local (y se avisa al usuario)
             }
         }
 
         kotlinx.coroutines.delay(350)
-        val reply = generateRealPixelImageAnalysis(userText, imageBitmap, huerto, reading, cropName)
-        Result.success(reply)
+        val localReply = generateRealPixelImageAnalysis(userText, imageBitmap, huerto, reading, cropName)
+        val notice = "⚠️ Modo local (sin conexión con la IA en la nube)\n\n"
+        Result.success(notice + localReply)
     }
 
     private fun callCloudVisionApi(
@@ -119,20 +124,21 @@ class AiRepository {
                 put("messages", JSONArray().apply { put(userMsg) })
             } else {
                 put("model", AiConfig.TEXT_MODEL)
-                if (chatHistory.isEmpty()) {
-                    chatHistory.add(JSONObject().apply {
-                        put("role", "system")
-                        put("content", systemPrompt)
-                    })
+                val messagesArray = JSONArray()
+                // El system prompt se arma en cada envío para usar los datos más recientes del huerto
+                messagesArray.put(JSONObject().apply {
+                    put("role", "system")
+                    put("content", systemPrompt)
+                })
+                synchronized(chatHistory) {
+                    for (msg in chatHistory) {
+                        messagesArray.put(msg)
+                    }
                 }
-                chatHistory.add(JSONObject().apply {
+                messagesArray.put(JSONObject().apply {
                     put("role", "user")
                     put("content", promptFinal)
                 })
-                val messagesArray = JSONArray()
-                for (msg in chatHistory) {
-                    messagesArray.put(msg)
-                }
                 put("messages", messagesArray)
             }
             put("temperature", 0.6)
@@ -157,10 +163,22 @@ class AiRepository {
             val replyText = choices.getJSONObject(0).getJSONObject("message").getString("content").trim()
 
             if (imageBitmap == null) {
-                chatHistory.add(JSONObject().apply {
-                    put("role", "assistant")
-                    put("content", replyText)
-                })
+                // El historial solo se guarda cuando la llamada fue exitosa
+                synchronized(chatHistory) {
+                    chatHistory.add(JSONObject().apply {
+                        put("role", "user")
+                        put("content", promptFinal)
+                    })
+                    chatHistory.add(JSONObject().apply {
+                        put("role", "assistant")
+                        put("content", replyText)
+                    })
+                    // Máximo 20 mensajes (10 turnos) para que no crezca sin límite
+                    while (chatHistory.size > 20) {
+                        chatHistory.removeAt(0)
+                        chatHistory.removeAt(0)
+                    }
+                }
             }
 
             return Result.success(replyText)
